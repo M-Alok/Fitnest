@@ -96,6 +96,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                       } else {
                         // Open Welcome Screeen
                         print("Open Welcome Screeen");
+                        setState(() {
+                          selectedpage = 0;
+                          controller.jumpToPage(selectedpage);
+                        });
                       }
                     },
                     icon: Icon(Icons.navigate_next, color: TColor.white),
