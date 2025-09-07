@@ -1,5 +1,5 @@
-import 'package:fitnest/common/color_extention.dart';
-import 'package:fitnest/view/onboarding/get_started_view.dart';
+import 'package:fitnest/utils/color_extention.dart';
+import 'package:fitnest/view/onboarding/get_started.dart';
 import 'package:flutter/material.dart';
 
 void main() {
