@@ -1,5 +1,5 @@
 import 'package:fitnest/common/color_extention.dart';
-import 'package:fitnest/view/onboarding/onboarding_view.dart';
+import 'package:fitnest/view/onboarding/get_started_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Poppins",
         primaryColor: TColor.primaryColor1
       ),
-      home: const OnboardingView(),
+      home: const GetStartedView(),
     );
   }
 }

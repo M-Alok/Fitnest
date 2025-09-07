@@ -74,7 +74,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   height: 70,
                   child: CircularProgressIndicator(
                     color: TColor.primaryColor1,
-                    value: selectedpage / (pageList.length-1),
+                    value: (selectedpage + 1) / 4,
                     strokeWidth: 2,
                   ),
                 ),
@@ -91,15 +91,14 @@ class _OnboardingViewState extends State<OnboardingView> {
                     onPressed: () {
                       if (selectedpage < 3) {
                         selectedpage = selectedpage + 1;
+                        controller.animateToPage(selectedpage, duration: Duration(milliseconds: 600), curve: Curves.bounceInOut);
                         controller.jumpToPage(selectedpage);
                         setState(() {});
                       } else {
-                        // Open Welcome Screeen
-                        print("Open Welcome Screeen");
-                        setState(() {
-                          selectedpage = 0;
-                          controller.jumpToPage(selectedpage);
-                        });
+                        // setState(() {
+                        //   selectedpage = 0;
+                        //   controller.jumpToPage(selectedpage);
+                        // });
                       }
                     },
                     icon: Icon(Icons.navigate_next, color: TColor.white),
