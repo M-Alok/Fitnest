@@ -7,12 +7,14 @@ class GradButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
   final GradButtonType type;
+  final bool showSuffix;
 
   const GradButton({
     super.key,
     required this.title,
     required this.onPressed,
     this.type = GradButtonType.bgGradient,
+    this.showSuffix = false,
   });
 
   @override
@@ -45,35 +47,49 @@ class GradButton extends StatelessWidget {
         textColor: TColor.primaryColor1,
         minWidth: double.maxFinite,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-        child: type == GradButtonType.bgGradient
-            ? Text(
-                title,
-                style: TextStyle(
-                  color: TColor.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),
-              )
-            : ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) {
-                  return LinearGradient(
-                    colors: TColor.primaryGrad,
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ).createShader(
-                    Rect.fromLTRB(0, 0, bounds.width, bounds.height),
-                  );
-                },
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    color: TColor.primaryColor1,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (showSuffix == true) Image.asset(
+              'assets/img/login.png',
+              width: 15,
+              height: 15,
+              color: type == GradButtonType.bgGradient
+                  ? TColor.white
+                  : TColor.primaryColor1,
+            ),
+            if (showSuffix == true)  SizedBox(width: 10),
+            type == GradButtonType.bgGradient
+                ? Text(
+                    title,
+                    style: TextStyle(
+                      color: TColor.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  )
+                : ShaderMask(
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (bounds) {
+                      return LinearGradient(
+                        colors: TColor.primaryGrad,
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ).createShader(
+                        Rect.fromLTRB(0, 0, bounds.width, bounds.height),
+                      );
+                    },
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        color: TColor.primaryColor1,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+          ],
+        ),
       ),
     );
   }

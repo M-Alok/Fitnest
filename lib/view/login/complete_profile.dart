@@ -26,7 +26,8 @@ class _CompleteProfileState extends State<CompleteProfile> {
       backgroundColor: TColor.white,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Padding(
+          child: Container(
+            height: media.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
@@ -51,7 +52,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: media.width * 0.1),
+                const Spacer(),
                 Container(
                   decoration: BoxDecoration(
                     color: TColor.lightGray,
@@ -167,7 +168,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                     ),
                   ],
                 ),
-                SizedBox(height: media.width * 0.1),
+                SizedBox(height: media.width * 0.05),
                 GradButton(title: 'Next  >', onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const YourGoal()));
                 }),

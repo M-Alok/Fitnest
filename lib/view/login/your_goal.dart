@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fitnest/view/login/welcome.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -118,8 +119,9 @@ class _YourGoalState extends State<YourGoal> {
                     ),
                   ),
                   const Spacer(),
-                  SizedBox(height: media.width * 0.05),
-                  GradButton(title: "Confirm", onPressed: () {}),
+                  GradButton(title: "Confirm", onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()));
+                  }),
                 ],
               ),
             ),

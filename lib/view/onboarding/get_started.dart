@@ -21,6 +21,7 @@ class _GetStartedViewState extends State<GetStartedView> {
       backgroundColor: TColor.white,
       body: Container(
         width: media.width,
+        height: media.height,
         decoration: BoxDecoration(
           gradient: isChangeClor
               ? LinearGradient(
@@ -34,21 +35,39 @@ class _GetStartedViewState extends State<GetStartedView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Text(
-              'Fitnest',
-              style: TextStyle(
-                color: TColor.black,
-                fontSize: 36,
-                fontWeight: FontWeight.w700,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                Text(
+                  'Fitnest',
+                  style: TextStyle(
+                    color: TColor.black,
+                    fontSize: 36,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  'X',
+                  style: TextStyle(
+                    color: isChangeClor ? TColor.white : TColor.primaryColor1,
+                    fontSize: 60,
+                    fontWeight: FontWeight.w700,
+                  ),
+                )
+              ],
             ),
-
+      
             Text(
               'Everybody Can Train',
-              style: TextStyle(color: TColor.gray, fontSize: 18),
+              style: TextStyle(
+                color: isChangeClor ? Colors.white70 : Colors.black54,
+                fontSize: 18,
+              ),
             ),
             const Spacer(),
-
+      
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -59,7 +78,7 @@ class _GetStartedViewState extends State<GetStartedView> {
                       : GradButtonType.bgGradient,
                   onPressed: () {
                     if (isChangeClor) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const OnboardingView()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Onboarding()));
                     } else {
                       setState(() {
                         isChangeClor = true;

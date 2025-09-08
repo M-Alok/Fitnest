@@ -1,26 +1,22 @@
-import 'package:fitnest/view/login/login.dart';
 import 'package:flutter/material.dart';
+import 'package:fitnest/view/login/signup.dart';
+import 'package:fitnest/view/login/welcome.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:fitnest/widgets/social_button.dart';
 import 'package:fitnest/widgets/custom_textfield.dart';
-import 'package:fitnest/view/login/complete_profile.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
-  TextEditingController fnameController = TextEditingController();
-  TextEditingController lnameController = TextEditingController();
+class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   bool showPassword = false;
-  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +38,7 @@ class _SignupState extends State<Signup> {
                   style: TextStyle(color: TColor.gray, fontSize: 16),
                 ),
                 Text(
-                  'Create an Account',
+                  'Welcome back',
                   style: TextStyle(
                     color: TColor.black,
                     fontSize: 20,
@@ -50,20 +46,6 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                CustomTextFiled(
-                  controller: fnameController,
-                  hintText: 'First Name',
-                  image: 'assets/img/user.png',
-                  keyboardType: TextInputType.name,
-                ),
-                SizedBox(height: media.width * 0.04),
-                CustomTextFiled(
-                  controller: lnameController,
-                  hintText: 'Last Name',
-                  image: 'assets/img/user.png',
-                  keyboardType: TextInputType.name,
-                ),
-                SizedBox(height: media.width * 0.04),
                 CustomTextFiled(
                   controller: emailController,
                   hintText: 'Email',
@@ -89,32 +71,14 @@ class _SignupState extends State<Signup> {
                         : Icon(Icons.visibility_off_outlined, size: 18, color: TColor.gray.withOpacity(0.7)),
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isChecked = !isChecked;
-                        });
-                      },
-                      icon: Icon(
-                        isChecked ? Icons.check_box_outlined : Icons.check_box_outline_blank_outlined,
-                        size: 20,
-                        color: TColor.gray,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        'By continuing you expect our Privacy Policy and\nTerm of use',
-                        style: TextStyle(color: TColor.gray, fontSize: 10),
-                      ),
-                    ),
-                  ],
+                SizedBox(height: media.width * 0.02),
+                Text(
+                  'Forgot your password?',
+                  style: TextStyle(color: TColor.gray, fontSize: 10, decoration: TextDecoration.underline),
                 ),
                 const Spacer(),
-                GradButton(title: 'Register', onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const CompleteProfile()));
+                GradButton(title: 'Login', showSuffix: true, onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()));
                 }),
                 SizedBox(height: media.width * 0.04),
                 Row(
@@ -153,20 +117,20 @@ class _SignupState extends State<Signup> {
                     ),
                   ],
                 ),
-                SizedBox(height: media.width * 0.04),
+                SizedBox(height: media.width * 0.05),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Already have an account? ',
+                      "Don’t have an account yet? ",
                       style: TextStyle(color: TColor.black, fontSize: 14),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Signup()));
                       },
                       child: Text(
-                        'Login',
+                        'Register',
                         style: TextStyle(color: TColor.secondaryColor1, fontSize: 14, fontWeight: FontWeight.w600),
                       ),
                     ),

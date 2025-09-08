@@ -1,16 +1,16 @@
-import 'package:fitnest/view/login/signup.dart';
-import 'package:fitnest/widgets/onboarding_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fitnest/view/login/login.dart';
 import 'package:fitnest/utils/color_extention.dart';
+import 'package:fitnest/widgets/onboarding_widget.dart';
 
-class OnboardingView extends StatefulWidget {
-  const OnboardingView({super.key});
+class Onboarding extends StatefulWidget {
+  const Onboarding({super.key});
 
   @override
-  State<OnboardingView> createState() => _OnboardingViewState();
+  State<Onboarding> createState() => _OnboardingState();
 }
 
-class _OnboardingViewState extends State<OnboardingView> {
+class _OnboardingState extends State<Onboarding> {
   PageController controller = PageController();
 
   int selectedpage = 0;
@@ -60,7 +60,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             itemCount: pageList.length,
             itemBuilder: (context, index) {
               var obj = pageList[index] as Map<String, String>;
-              return OnboardingPageWidget(obj: obj);
+              return OnboardingWidget(obj: obj);
             }
           ),
 
@@ -96,7 +96,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                         controller.jumpToPage(selectedpage);
                         setState(() {});
                       } else {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Signup()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
                       }
                     },
                     icon: Icon(Icons.navigate_next, color: TColor.white),

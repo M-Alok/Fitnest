@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fitnest/utils/color_extention.dart';
 
-class OnboardingPageWidget extends StatelessWidget {
+class OnboardingWidget extends StatelessWidget {
   final Map<String, String> obj;
-  const OnboardingPageWidget({super.key, required this.obj});
+  
+  const OnboardingWidget({super.key, required this.obj});
 
   @override
   Widget build(BuildContext context) {
