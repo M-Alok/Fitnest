@@ -29,7 +29,7 @@ class GradButton extends StatelessWidget {
             ? const [
                 BoxShadow(
                   color: Colors.black26,
-                  blurRadius: 2,
+                  blurRadius: 0.5,
                   offset: Offset(0, 2),
                 ),
               ]

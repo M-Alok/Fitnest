@@ -1,7 +1,8 @@
+import 'package:fitnest/view/login/complete_profile.dart';
+import 'package:flutter/material.dart';
+import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:fitnest/widgets/custom_textfield.dart';
-import 'package:fitnest/widgets/grad_button.dart';
-import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -109,7 +110,9 @@ class _SignupState extends State<Signup> {
                   ],
                 ),
                 SizedBox(height: media.width * 0.5),
-                GradButton(title: 'Register', onPressed: () {}),
+                GradButton(title: 'Register', onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const CompleteProfile()));
+                }),
                 SizedBox(height: media.width * 0.04),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
