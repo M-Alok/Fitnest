@@ -1,3 +1,4 @@
+import 'package:fitnest/view/login/your_goal.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
@@ -72,6 +73,8 @@ class _CompleteProfileState extends State<CompleteProfile> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               dropdownColor: TColor.white,
+                              isExpanded: true,
+                              icon: Icon(Icons.keyboard_arrow_down_rounded, size: 18, color: TColor.gray.withOpacity(0.7)),
                               items: ["Male", "Female"].map((gen) => DropdownMenuItem(
                                 value: gen,
                                 child: Text(
@@ -82,8 +85,6 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                   ),
                                 ),
                               )).toList(),
-                              isExpanded: true,
-                              icon: Icon(Icons.keyboard_arrow_down_rounded, size: 18, color: TColor.gray.withOpacity(0.7)),
                               hint: Text(
                                 "Choose Gender",
                                 style: TextStyle(
@@ -114,7 +115,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         controller: weightController,
                         hintText: 'Your Weight',
                         image: 'assets/img/weight.png',
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                     SizedBox(width: 10),
@@ -144,7 +145,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         controller: heightController,
                         hintText: 'Your Height',
                         image: 'assets/img/swap.png',
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                     SizedBox(width: 10),
@@ -167,7 +168,9 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   ],
                 ),
                 SizedBox(height: media.width * 0.1),
-                GradButton(title: 'Next  >', onPressed: () {}),
+                GradButton(title: 'Next  >', onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const YourGoal()));
+                }),
               ],
             ),
           ),
