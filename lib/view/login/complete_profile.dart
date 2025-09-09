@@ -67,7 +67,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                           width: 15,
                           height: 15,
                           alignment: Alignment.center,
-                          child: Image.asset('assets/img/user_2.png', color: TColor.gray, fit: BoxFit.contain, width: 15, height: 15),
+                          child: Image.asset('assets/img/2user.png', color: TColor.gray, fit: BoxFit.contain, width: 15, height: 15),
                         ),
                         SizedBox(width: 20),
                         Expanded(

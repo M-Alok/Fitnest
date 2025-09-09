@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
+import 'package:fitnest/view/main_tab/main_tab.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -51,7 +52,7 @@ class _WelcomeState extends State<Welcome> {
               ),
               SizedBox(height: media.width * 0.62),
               GradButton(title: 'Go To Home', onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Placeholder()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MainTab()));
                 }),
             ],
           ),
