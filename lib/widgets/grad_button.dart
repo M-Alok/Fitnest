@@ -1,13 +1,16 @@
-import 'package:fitnest/utils/color_extention.dart';
 import 'package:flutter/material.dart';
+import 'package:fitnest/utils/color_extention.dart';
 
-enum GradButtonType { bgGradient, textGradient }
+enum GradButtonType { bgGradient, bgSGradient, textGradient }
 
 class GradButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
   final GradButtonType type;
   final bool showSuffix;
+  final double fontSize;
+  final double elevation;
+  final FontWeight fontWeight;
 
   const GradButton({
     super.key,
@@ -15,6 +18,9 @@ class GradButton extends StatelessWidget {
     required this.onPressed,
     this.type = GradButtonType.bgGradient,
     this.showSuffix = false,
+    this.fontSize = 16,
+    this.elevation = 1,
+    this.fontWeight = FontWeight.w700,
   });
 
   @override
@@ -22,12 +28,12 @@ class GradButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: TColor.primaryGrad,
+          colors: type == GradButtonType.bgSGradient ? TColor.secondaryGrad :  TColor.primaryGrad,
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
         borderRadius: BorderRadius.all(Radius.circular(25)),
-        boxShadow: type == GradButtonType.bgGradient
+        boxShadow: type == GradButtonType.bgGradient || type == GradButtonType.bgSGradient
             ? const [
                 BoxShadow(
                   color: Colors.black26,
@@ -40,8 +46,8 @@ class GradButton extends StatelessWidget {
       child: MaterialButton(
         onPressed: onPressed,
         height: 50,
-        elevation: type == GradButtonType.bgGradient ? 0 : 1,
-        color: type == GradButtonType.bgGradient
+        elevation: type == GradButtonType.bgGradient || type == GradButtonType.bgSGradient ? 0 : elevation,
+        color: type == GradButtonType.bgGradient || type == GradButtonType.bgSGradient
             ? Colors.transparent
             : TColor.white,
         textColor: TColor.primaryColor1,
@@ -58,14 +64,14 @@ class GradButton extends StatelessWidget {
                   ? TColor.white
                   : TColor.primaryColor1,
             ),
-            if (showSuffix == true)  SizedBox(width: 10),
-            type == GradButtonType.bgGradient
+            if (showSuffix == true) SizedBox(width: 10),
+            type == GradButtonType.bgGradient || type == GradButtonType.bgSGradient
                 ? Text(
                     title,
                     style: TextStyle(
                       color: TColor.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
+                      fontSize: fontSize,
+                      fontWeight: fontWeight,
                     ),
                   )
                 : ShaderMask(
@@ -83,8 +89,8 @@ class GradButton extends StatelessWidget {
                       title,
                       style: TextStyle(
                         color: TColor.primaryColor1,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
+                        fontSize: fontSize,
+                        fontWeight: fontWeight,
                       ),
                     ),
                   ),

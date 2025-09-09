@@ -1,4 +1,6 @@
+import 'package:fitnest/view/home/blank.dart';
 import 'package:flutter/material.dart';
+import 'package:fitnest/view/home/home.dart';
 import 'package:fitnest/widgets/tab_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 
@@ -11,6 +13,9 @@ class MainTab extends StatefulWidget {
 
 class _MainTabState extends State<MainTab> {
   int selectedTab = 0;
+  PageStorageBucket pageBucket = PageStorageBucket();
+  Widget currentTab = const Home();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +54,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectedTab == 0,
                 onTap: () {
                   selectedTab = 0;
+                  currentTab = const Home();
                   if(mounted) {
                     setState(() {});
                   }
@@ -60,6 +66,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectedTab == 1,
                 onTap: () {
                   selectedTab = 1;
+                  currentTab = const Blank();
                   if(mounted) {
                     setState(() {});
                   }
@@ -72,6 +79,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectedTab == 2,
                 onTap: () {
                   selectedTab = 2;
+                  currentTab = const Blank();
                   if(mounted) {
                     setState(() {});
                   }
@@ -83,6 +91,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectedTab == 3,
                 onTap: () {
                   selectedTab = 3;
+                  currentTab = const Blank();
                   if(mounted) {
                     setState(() {});
                   }
@@ -91,6 +100,10 @@ class _MainTabState extends State<MainTab> {
             ],
           ),
         ),
+      ),
+      body: PageStorage(
+        bucket: pageBucket,
+        child: currentTab,
       ),
     );
   }
