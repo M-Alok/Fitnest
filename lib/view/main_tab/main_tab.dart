@@ -37,14 +37,13 @@ class _MainTabState extends State<MainTab> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: TColor.white,
-        child: Container(
-          height: kToolbarHeight,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2, offset: Offset(0, -2))]
-          ),
+      bottomNavigationBar: Container(
+        height: 90,
+        decoration: BoxDecoration(
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2, offset: Offset(0, -2))]
+        ),
+        child: BottomAppBar(
+          color: TColor.lightGray.withOpacity(1),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
