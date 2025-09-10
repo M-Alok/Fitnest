@@ -118,6 +118,7 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Welcome, Name
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -158,6 +159,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 SizedBox(height: media.width * 0.05),
+                // BMI
                 Container(
                   height: media.width * 0.4,
                   decoration: BoxDecoration(
@@ -238,6 +240,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
+                // Today target
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                   decoration: BoxDecoration(
@@ -269,6 +272,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
+                // Activity Status(header)
                 Text(
                   "Activity Status",
                   style: TextStyle(
@@ -278,6 +282,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.02),
+                // Activity Status(Heart rate)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(25),
                   child: Container(
@@ -423,6 +428,280 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+                ),
+                SizedBox(height: media.width * 0.05),
+                // Activity Status(Water, Sleep, Calories)
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: media.width * 0.95,
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                        decoration: BoxDecoration(
+                          color: TColor.white,
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)]
+                        ),
+                        child: Row(
+                          children: [
+                            SimpleAnimationProgressBar(
+                              height: media.width * 0.85,
+                              width: media.width * 0.05,
+                              backgroundColor: Colors.grey.shade100,
+                              foregroundColor: Colors.purple,
+                              ratio: 0.5,
+                              direction: Axis.vertical,
+                              curve: Curves.fastLinearToSlowEaseIn,
+                              duration: const Duration(seconds: 3),
+                              borderRadius: BorderRadius.circular(15),
+                              gradientColor: LinearGradient(
+                                colors: TColor.primaryGrad,
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Water Intake',
+                                    style: TextStyle(
+                                      color: TColor.black,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (bounds) {
+                                      return LinearGradient(
+                                        colors: TColor.primaryGrad,
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight
+                                      ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height));
+                                    },
+                                    child: Text(
+                                      "4 Liters",
+                                      style: TextStyle(
+                                        color: TColor.white.withOpacity(0.7),
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    'Time updates',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: TColor.black,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: waterArr.map((wObj) {
+                                      var isLast = wObj == waterArr.last;
+                                      return Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                             mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                margin: const EdgeInsets.symmetric(vertical: 4),
+                                                width: 10,
+                                                height: 10,
+                                                decoration: BoxDecoration(
+                                                  color: TColor.secondaryColor1.withOpacity(0.5),
+                                                  borderRadius: BorderRadius.circular(5),
+                                                ),
+                                              ),
+                                              if (!isLast)
+                                                DottedDashedLine(
+                                                  height: media.width * 0.078,
+                                                  width: 0,
+                                                  dashColor: TColor.secondaryColor1.withOpacity(0.5),
+                                                  axis: Axis.vertical,
+                                                ),
+                                            ],
+                                          ),
+                                          SizedBox(width: 10),
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                wObj["title"].toString(),
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                              ShaderMask(
+                                                blendMode: BlendMode.srcIn,
+                                                shaderCallback: (bounds) {
+                                                  return LinearGradient(
+                                                    colors: TColor.secondaryGrad,
+                                                    begin: Alignment.centerLeft,
+                                                    end: Alignment.centerRight,
+                                                  ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height));
+                                                },
+                                                child: Text(
+                                                  wObj["subtitle"].toString(),
+                                                  style: TextStyle(
+                                                    color: TColor.white.withOpacity(0.7),
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      );
+                                    }).toList(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: media.width * 0.05),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: media.width * 0.45,
+                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                            decoration: BoxDecoration(
+                              color: TColor.white,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)]
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sleep',
+                                  style: TextStyle(
+                                    color: TColor.black,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcIn,
+                                  shaderCallback: (bounds) {
+                                    return LinearGradient(
+                                      colors: TColor.primaryGrad,
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight
+                                    ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height));
+                                  },
+                                  child: Text(
+                                    "8h 20m",
+                                    style: TextStyle(
+                                      color: TColor.white.withOpacity(0.7),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                Image.asset('assets/img/sleep_grap.png', width: double.maxFinite, fit: BoxFit.fitWidth),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: media.width * 0.05),
+                          Container(
+                            height: media.width * 0.45,
+                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                            decoration: BoxDecoration(
+                              color: TColor.white,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)]
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Calories',
+                                  style: TextStyle(
+                                    color: TColor.black,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcIn,
+                                  shaderCallback: (bounds) {
+                                    return LinearGradient(
+                                      colors: TColor.primaryGrad,
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight
+                                    ).createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height));
+                                  },
+                                  child: Text(
+                                    "760 kCal",
+                                    style: TextStyle(
+                                      color: TColor.white.withOpacity(0.7),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                Container(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    width: media.width * 0.2,
+                                    height: media.width * 0.2,
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Container(
+                                          width: media.width * 0.15,
+                                          height: media.width * 0.15,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(colors: TColor.primaryGrad),
+                                            borderRadius: BorderRadius.circular(media.width * 0.075),
+                                          ),
+                                          child: FittedBox(
+                                            child: Text(
+                                              "230kCal\nleft",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: TColor.white,
+                                                fontSize: 11,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SimpleCircularProgressBar(
+                                          progressStrokeWidth: 10,
+                                          backStrokeWidth: 10,
+                                          progressColors: TColor.secondaryGrad,
+                                          backColor: Colors.grey.shade100,
+                                          valueNotifier: ValueNotifier(50),
+                                          startAngle: -180,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: media.width * 0.05),
               ],
