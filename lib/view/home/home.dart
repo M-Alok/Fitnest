@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:fitnest/widgets/workout.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
@@ -14,24 +15,26 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String? selectedValue;
+  
   List lastWorkoutArr = [
     {
       "name": "Full Body Workout",
-      "image": "assets/img/Workout1.png",
+      "image": "assets/img/workout_1.png",
       "kcal": "180",
       "time": "20",
       "progress": 0.3
     },
     {
       "name": "Lower Body Workout",
-      "image": "assets/img/Workout2.png",
+      "image": "assets/img/workout_2.png",
       "kcal": "200",
       "time": "30",
       "progress": 0.4
     },
     {
       "name": "Ab Workout",
-      "image": "assets/img/Workout3.png",
+      "image": "assets/img/workout_3.png",
       "kcal": "300",
       "time": "40",
       "progress": 0.7
@@ -85,7 +88,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-
+    
     final lineBarsData = [
       LineChartBarData(
         showingIndicators: showingTooltipOnSpots,
@@ -110,15 +113,15 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: TColor.white,
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Container(
             width: media.width,
             padding: EdgeInsets.symmetric(horizontal: media.width * 0.05, vertical: media.width * 0.05),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Welcome, Name
+                // Welcome, Name and Nonifications
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -140,20 +143,26 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     Spacer(),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Placeholder(),
-                          ),
-                        );
-                      },
-                      icon: Image.asset(
-                        "assets/img/notification.png",
-                        width: 25,
-                        height: 25,
-                        fit: BoxFit.fitHeight,
+                    Container(
+                      decoration: BoxDecoration(
+                        color: TColor.primaryColor1.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Placeholder(),
+                            ),
+                          );
+                        },
+                        icon: Image.asset(
+                          "assets/img/notification.png",
+                          width: 25,
+                          height: 25,
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                     ),
                   ],
@@ -272,17 +281,16 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                // Activity Status(header)
+                // Activity Status
                 Text(
                   "Activity Status",
                   style: TextStyle(
                     color: TColor.black,
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(height: media.width * 0.02),
-                // Activity Status(Heart rate)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(25),
                   child: Container(
@@ -430,7 +438,6 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
-                // Activity Status(Water, Sleep, Calories)
                 Row(
                   children: [
                     Expanded(
@@ -702,6 +709,212 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(height: media.width * 0.05),
+                // Workout progress
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Workout Progress',
+                      style: TextStyle(
+                        color: TColor.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Container(
+                      width: 130,
+                      padding: const EdgeInsets.only(left: 12, right: 8),
+                      decoration: BoxDecoration(
+                        color: TColor.primaryColor1,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: selectedValue,
+                          isExpanded: true,
+                          dropdownColor: Colors.black87,
+                          borderRadius: BorderRadius.circular(15),
+                          elevation: 8,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded, 
+                            size: 24, 
+                            color: TColor.white,
+                          ),
+                          style: TextStyle(
+                            color: TColor.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          items: ['Daily', 'Weekly', 'Monthly'].map((String obj) {
+                            return DropdownMenuItem<String>(
+                              value: obj,
+                              child: Text(
+                                obj,
+                                style: TextStyle(
+                                  color: TColor.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          hint: Text(
+                            "Weekly",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: TColor.white, fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              selectedValue = value;
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 15),
+                  height: media.width * 0.5,
+                  width: double.maxFinite,
+                  child: LineChart(
+                    LineChartData(
+                      showingTooltipIndicators: showingTooltipOnSpots.map((index) {
+                        return ShowingTooltipIndicators([
+                          LineBarSpot(
+                            tooltipsOnBar,
+                            lineBarsData.indexOf(tooltipsOnBar),
+                            tooltipsOnBar.spots[index],
+                          ),
+                        ]);
+                      }).toList(),
+                      lineTouchData: LineTouchData(
+                        enabled: true,
+                        handleBuiltInTouches: false,
+                        touchCallback: (FlTouchEvent event, LineTouchResponse? response) {
+                          if (response == null || response.lineBarSpots == null) return;
+                          if (event is FlTapUpEvent) {
+                            final spotIndex = response.lineBarSpots!.first.spotIndex;
+                            showingTooltipOnSpots.clear();
+                            setState(() {
+                              showingTooltipOnSpots.add(spotIndex);
+                            });
+                          }
+                        },
+                        mouseCursorResolver: (FlTouchEvent event, LineTouchResponse? response) {
+                          if (response == null || response.lineBarSpots == null) return SystemMouseCursors.basic;
+                          return SystemMouseCursors.click;
+                        },
+                        getTouchedSpotIndicator: (LineChartBarData barData, List<int> spotIndexes) {
+                          return spotIndexes.map((index) {
+                            return TouchedSpotIndicatorData(
+                              FlLine( color: Colors.transparent),
+                              FlDotData(
+                                show: true,
+                                getDotPainter: (spot, percent, barData, index) =>FlDotCirclePainter(
+                                  radius: 3,
+                                  color: Colors.white,
+                                  strokeWidth: 3,
+                                  strokeColor: TColor.secondaryColor1,
+                                ),
+                              ),
+                            );
+                          }).toList();
+                        },
+                        touchTooltipData: LineTouchTooltipData(
+                          getTooltipColor: (touchedSpot) => TColor.secondaryColor1,
+                          tooltipRoundedRadius: 20,
+                          getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
+                            return lineBarsSpot.map((lineBarSpot) {
+                              return LineTooltipItem(
+                                "${lineBarSpot.x.toInt()} mins ago",
+                                const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              );
+                            }).toList();
+                          },
+                        ),
+                      ),
+                      lineBarsData: lineBarsData1,
+                      minY: -0.5,
+                      maxY: 110,
+                      titlesData: FlTitlesData(
+                        show: true,
+                        leftTitles: AxisTitles(),
+                        topTitles: AxisTitles(),
+                        bottomTitles: AxisTitles(sideTitles: bottomTitles),
+                        rightTitles: AxisTitles(sideTitles: rightTitles),
+                      ),
+                      gridData: FlGridData(
+                        show: true,
+                        drawHorizontalLine: true,
+                        horizontalInterval: 25,
+                        drawVerticalLine: false,
+                        getDrawingHorizontalLine: (value) {
+                          return FlLine(
+                            color: TColor.gray.withOpacity(0.15),
+                            strokeWidth: 2,
+                          );
+                        },
+                      ),
+                      borderData: FlBorderData(
+                        show: true,
+                        border: Border.all(color: Colors.transparent),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: media.width * 0.05),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Latest Workout',
+                      style: TextStyle(
+                        color: TColor.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'see more',
+                        style: TextStyle(
+                          color: TColor.gray,
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: lastWorkoutArr.length,
+                   itemBuilder: (context, index) {
+                    var wObj = lastWorkoutArr[index] as Map? ?? {};
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Placeholder()),
+                        );
+                      },
+                      child: Workout(wObj: wObj),
+                    );
+                  },
                 ),
                 SizedBox(height: media.width * 0.05),
               ],
