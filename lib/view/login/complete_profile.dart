@@ -74,7 +74,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               isExpanded: true,
-                              dropdownColor: TColor.white,
+                              dropdownColor: TColor.black,
                               borderRadius: BorderRadius.circular(15),
                               icon: Icon(Icons.keyboard_arrow_down_rounded, size: 18, color: TColor.gray.withOpacity(0.7)),
                               items: ["Male", "Female"].map((gen) => DropdownMenuItem(
@@ -82,7 +82,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                 child: Text(
                                   gen,
                                   style: TextStyle(
-                                    color: TColor.gray,
+                                    color: TColor.white,
                                     fontSize: 16,
                                   ),
                                 ),
