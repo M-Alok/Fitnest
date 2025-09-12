@@ -24,9 +24,11 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       backgroundColor: TColor.white,
       appBar: AppBar(
-        backgroundColor: TColor.white,
-        centerTitle: true,
         elevation: 0,
+        centerTitle: true,
+        backgroundColor: TColor.white,
+        shadowColor: Colors.black38,
+        surfaceTintColor: Colors.transparent,
         leading: CustomButton(
           icon: 'assets/img/back_icon.png',
           onPressed: () {
@@ -95,7 +97,7 @@ class _NotificationsState extends State<Notifications> {
                 IconButton(
                   onPressed: () {},
                   icon: Image.asset(
-                    'assets/img/sub_menu.png',
+                    'assets/img/menu.png',
                     width: 15,
                     height: 15,
                     fit: BoxFit.contain,

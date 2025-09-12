@@ -13,6 +13,8 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
+  String? selectedValue;
+
   TextEditingController genderController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController weightController = TextEditingController();
@@ -73,6 +75,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                         Expanded(
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
+                              value: selectedValue,
                               isExpanded: true,
                               dropdownColor: TColor.black,
                               borderRadius: BorderRadius.circular(15),
@@ -94,7 +97,9 @@ class _CompleteProfileState extends State<CompleteProfile> {
                                   fontSize: 14
                                 ),
                               ),
-                              onChanged: (value) {}
+                              onChanged: (value) {
+                                selectedValue = value;
+                              }
                             ),
                           ),
                         ),

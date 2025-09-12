@@ -23,8 +23,9 @@ class CustomButton extends StatelessWidget {
         width: 40,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: TColor.lightGray,
-            borderRadius: BorderRadius.circular(10)),
+          color: TColor.lightGray,
+          borderRadius: BorderRadius.circular(10)
+        ),
         child: Image.asset(
           icon,
           width: iconSize,
