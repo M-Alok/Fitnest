@@ -19,6 +19,7 @@ class TabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      splashColor: Colors.transparent,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

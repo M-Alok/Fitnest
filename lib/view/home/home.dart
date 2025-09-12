@@ -1,8 +1,10 @@
+import 'package:fitnest/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fitnest/widgets/workout.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
+import 'package:fitnest/view/home/notifications.dart';
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
@@ -143,27 +145,16 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     Spacer(),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: TColor.primaryColor1.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Placeholder(),
-                            ),
-                          );
-                        },
-                        icon: Image.asset(
-                          "assets/img/notification.png",
-                          width: 25,
-                          height: 25,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
+                    CustomButton(
+                      icon: 'assets/img/notification.png',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Notifications(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -877,6 +868,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(height: media.width * 0.05),
+                // Latest Workout
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

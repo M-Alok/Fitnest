@@ -11,7 +11,7 @@ class GetStartedView extends StatefulWidget {
 }
 
 class _GetStartedViewState extends State<GetStartedView> {
-  bool isChangeClor = false;
+  bool isChangeClor = true;
 
   @override
   Widget build(BuildContext context) {
@@ -77,13 +77,14 @@ class _GetStartedViewState extends State<GetStartedView> {
                       ? GradButtonType.textGradient
                       : GradButtonType.bgGradient,
                   onPressed: () {
-                    if (isChangeClor) {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Onboarding()));
-                    } else {
-                      setState(() {
-                        isChangeClor = true;
-                      });
-                    }
+                    // if (isChangeClor) {
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context) => const Onboarding()));
+                    // } else {
+                    //   setState(() {
+                    //     isChangeClor = true;
+                    //   });
+                    // }
                   },
                 ),
               ),
