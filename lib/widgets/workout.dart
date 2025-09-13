@@ -63,14 +63,11 @@ class Workout extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              "assets/img/next_icon.png",
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
+          Image.asset(
+            "assets/img/next_icon.png",
+            width: 30,
+            height: 30,
+            fit: BoxFit.contain,
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:fitnest/view/home/finished_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fitnest/widgets/workout.dart';
@@ -903,8 +904,9 @@ class _HomeState extends State<Home> {
                    itemBuilder: (context, index) {
                     var wObj = lastWorkoutArr[index] as Map? ?? {};
                     return InkWell(
+                      splashColor: Colors.transparent,
                       onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => const Placeholder()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const FinishedWorkout()));
                       },
                       child: Workout(wObj: wObj),
                     );
