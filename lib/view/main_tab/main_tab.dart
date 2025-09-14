@@ -1,9 +1,11 @@
+import 'package:fitnest/view/workout_tracker/workout_tracker.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnest/view/home/home.dart';
 import 'package:fitnest/view/home/blank.dart';
 import 'package:fitnest/widgets/tab_button.dart';
 import 'package:fitnest/view/profile/profile.dart';
 import 'package:fitnest/utils/color_extention.dart';
+import 'package:fitnest/view/main_tab/select_view.dart';
 
 class MainTab extends StatefulWidget {
   const MainTab({super.key});
@@ -66,7 +68,7 @@ class _MainTabState extends State<MainTab> {
                 isActive: selectedTab == 1,
                 onTap: () {
                   selectedTab = 1;
-                  currentTab = const Blank();
+                  currentTab = const WorkoutTracker();
                   if(mounted) {
                     setState(() {});
                   }

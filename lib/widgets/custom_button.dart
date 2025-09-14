@@ -5,12 +5,14 @@ class CustomButton extends StatelessWidget {
   final String icon;
   final double iconSize;
   final VoidCallback onPressed;
+  final double size;
 
   const CustomButton({
     super.key,
     required this.icon,
     required this.onPressed,
     this.iconSize = 20,
+    this.size = 40,
   });
 
   @override
@@ -19,8 +21,8 @@ class CustomButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.all(8),
-        height: 40,
-        width: 40,
+        height: size,
+        width: size,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: TColor.lightGray,
