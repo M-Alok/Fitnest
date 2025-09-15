@@ -1,10 +1,10 @@
-import 'package:fitnest/view/workout_tracker/upcoming_workout.dart';
-import 'package:fitnest/view/workout_tracker/what_train.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:fitnest/widgets/what_train.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:fitnest/widgets/custom_button.dart';
+import 'package:fitnest/widgets/upcoming_workout.dart';
 
 class WorkoutTracker extends StatefulWidget {
   const WorkoutTracker({super.key});
@@ -308,12 +308,7 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                     itemCount: whatArr.length,
                     itemBuilder: (context, index) {
                       var wObj = whatArr[index] as Map? ?? {};
-                      return InkWell(
-                        onTap: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Placeholder() ));
-                        },
-                        child:  WhatTrain(wObj: wObj),
-                      );
+                      return WhatTrain(wObj: wObj);
                     }
                   ),
                 ],

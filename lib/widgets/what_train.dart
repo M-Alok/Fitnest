@@ -1,6 +1,7 @@
-import 'package:fitnest/utils/color_extention.dart';
-import 'package:fitnest/widgets/grad_button.dart';
 import 'package:flutter/material.dart';
+import 'package:fitnest/widgets/grad_button.dart';
+import 'package:fitnest/utils/color_extention.dart';
+import 'package:fitnest/view/workout_tracker/workout_details.dart';
 
 class WhatTrain extends StatelessWidget {
   final Map wObj;
@@ -55,7 +56,9 @@ class WhatTrain extends StatelessWidget {
                       type: GradButtonType.textGradient,
                       elevation:0.05,
                       fontWeight: FontWeight.w400,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutDetails(wObj: wObj)));
+                      },
                     ),
                   ),
                 ],
