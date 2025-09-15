@@ -224,7 +224,7 @@ class _ProfileState extends State<Profile> {
                                       height: 30.0,
                                       child: DecoratedBox(
                                         decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: TColor.secondaryGrad),
+                                          gradient: LinearGradient(colors: positive ? TColor.secondaryGrad : [TColor.gray.withOpacity(0.5), TColor.gray.withOpacity(0.5)]),
                                           borderRadius: const BorderRadius.all(Radius.circular(50.0)),
                                         ),
                                       ),

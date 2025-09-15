@@ -16,32 +16,34 @@ class WorkoutTracker extends StatefulWidget {
 class _WorkoutTrackerState extends State<WorkoutTracker> {
   List latestArr = [
     {
-      "image": "assets/img/workout_1.png",
+      "image": "assets/img/workout_2.png",
       "title": "Fullbody Workout",
-      "time": "Today, 03:00pm"
+      "time": "Today, 03:00pm",
+      "complete": true,
     },
     {
-      "image": "assets/img/workout_1.png",
+      "image": "assets/img/workout_4.png",
       "title": "Upperbody Workout",
-      "time": "June 05, 02:00pm"
+      "time": "June 05, 02:00pm",
+      "complete": false,
     },
   ];
 
   List whatArr = [
     {
-      "image": "assets/img/what_1.png",
+      "image": "assets/img/workout_1.png",
       "title": "Fullbody Workout",
       "exercises": "11 Exercises",
       "time": "32mins"
     },
     {
-      "image": "assets/img/what_2.png",
+      "image": "assets/img/workout_2.png",
       "title": "Lowebody Workout",
       "exercises": "12 Exercises",
       "time": "40mins"
     },
     {
-      "image": "assets/img/what_3.png",
+      "image": "assets/img/workout_3.png",
       "title": "AB Workout",
       "exercises": "14 Exercises",
       "time": "20mins"
@@ -275,7 +277,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                       )
                     ],
                   ),
-                  SizedBox(height: media.width * 0.05),
                   ListView.builder(
                     padding: EdgeInsets.zero,
                     physics: NeverScrollableScrollPhysics(),
@@ -283,7 +284,6 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                     itemCount: latestArr.length,
                     itemBuilder: (context, index) {
                       var wObj = latestArr[index] as Map? ?? {};
-
                       return UpcomingWorkout(wObj: wObj);
                     },
                   ),
@@ -309,13 +309,13 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                     itemBuilder: (context, index) {
                       var wObj = whatArr[index] as Map? ?? {};
                       return InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  Placeholder() ));
+                        onTap: () {
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Placeholder() ));
                         },
-                        child:  WhatTrain(wObj: wObj) );
+                        child:  WhatTrain(wObj: wObj),
+                      );
                     }
                   ),
-                  SizedBox(height: media.width * 0.05),
                 ],
               ),
             ),

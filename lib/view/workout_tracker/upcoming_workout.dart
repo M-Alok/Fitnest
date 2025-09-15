@@ -14,8 +14,6 @@ class UpcomingWorkout extends StatefulWidget {
 class _UpcomingWorkoutState extends State<UpcomingWorkout> {
   @override
   Widget build(BuildContext context) {
-    bool positive = false;
-
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
       decoration: BoxDecoration(
@@ -62,18 +60,18 @@ class _UpcomingWorkoutState extends State<UpcomingWorkout> {
               ),
             ),
             CustomAnimatedToggleSwitch<bool>(
-              current: positive,
+              current: widget.wObj["complete"],
               values: [false, true],
               dif: 0.0,
               indicatorSize: const Size.square(30.0),
               animationDuration: const Duration(milliseconds: 200),
               animationCurve: Curves.linear,
-              onChanged: (b) => setState(() => positive = b),
+              onChanged: (b) => setState(() => widget.wObj["complete"] = b),
               iconBuilder: (context, local, global) {
                 return const SizedBox();
               },
               defaultCursor: SystemMouseCursors.click,
-              onTap: () => setState(() => positive = !positive),
+              onTap: () => setState(() => widget.wObj["complete"] = !widget.wObj["complete"]),
               iconsTappable: false,
               wrapperBuilder: (context, global, child) {
                 return Stack(
@@ -86,7 +84,7 @@ class _UpcomingWorkoutState extends State<UpcomingWorkout> {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: TColor.secondaryGrad,
+                            colors: widget.wObj["complete"] ? TColor.secondaryGrad : [TColor.gray.withOpacity(0.5), TColor.gray.withOpacity(0.5)],
                           ),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(50.0),

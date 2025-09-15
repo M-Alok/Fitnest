@@ -34,7 +34,7 @@ class _MainTabState extends State<MainTab> {
             height: 65,
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: TColor.primaryGrad),
-              borderRadius: BorderRadius.circular(35)
+              borderRadius: BorderRadius.circular(35),
             ),
             child: Icon(Icons.search, color: TColor.white, size: 35),
           ),

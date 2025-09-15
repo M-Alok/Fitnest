@@ -11,11 +11,11 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   List notificationArr = [
-    {"image": "assets/img/workout_4.png", "title": "Hey, it’s time for lunch", "time": "About 1 minutes ago"},
+    {"image": "assets/img/meal_1.png", "title": "Hey, it’s time for lunch", "time": "About 1 minutes ago"},
     {"image": "assets/img/workout_2.png", "title": "Don’t miss your lowerbody workout", "time": "About 3 hours ago"},
-    {"image": "assets/img/workout_5.png", "title": "Hey, let’s have some more meals", "time": "About 3 hours ago"},
+    {"image": "assets/img/meal_2.png", "title": "Hey, let’s have some more meals", "time": "About 3 hours ago"},
     {"image": "assets/img/workout_3.png", "title": "Congratulations, You have finished", "time": "29 May"},
-    {"image": "assets/img/workout_4.png", "title": "Hey, it’s time for lunch", "time": "8 April"},
+    {"image": "assets/img/meal_1.png", "title": "Hey, it’s time for lunch", "time": "8 April"},
     {"image": "assets/img/workout_1.png", "title": "Ups, You have missed your workout", "time": "8 April"},
   ];
 
