@@ -3,7 +3,7 @@ import 'package:fitnest/utils/color_extention.dart';
 
 class ExerciseSetSection extends StatelessWidget {
   final Map sObj;
-  final Function(Map obj) onPressed;
+  final VoidCallback onPressed;
 
   const ExerciseSetSection({super.key, required this.sObj, required this.onPressed});
 
@@ -67,11 +67,14 @@ class ExerciseSetSection extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/img/next_go.png',
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
+                  GestureDetector(
+                    onTap: onPressed,
+                    child: Image.asset(
+                      'assets/img/next_go.png',
+                      width: 25,
+                      height: 25,
+                      fit: BoxFit.contain,
+                    ),
                   )
                 ],
               ),

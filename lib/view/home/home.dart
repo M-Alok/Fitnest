@@ -1,12 +1,12 @@
-import 'package:fitnest/view/home/finished_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:fitnest/widgets/workout.dart';
-import 'package:fitnest/view/home/activity_tracker.dart';
 import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:fitnest/widgets/custom_button.dart';
 import 'package:fitnest/view/home/notifications.dart';
+import 'package:fitnest/view/home/finished_workout.dart';
+import 'package:fitnest/view/home/activity_tracker.dart';
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';

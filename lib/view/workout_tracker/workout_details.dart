@@ -1,9 +1,10 @@
+import 'package:fitnest/view/workout_tracker/exercise_details.dart';
+import 'package:flutter/material.dart';
+import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/utils/color_extention.dart';
 import 'package:fitnest/widgets/custom_button.dart';
-import 'package:fitnest/widgets/exercise_set_section.dart';
-import 'package:fitnest/widgets/grad_button.dart';
 import 'package:fitnest/widgets/icon_title_next.dart';
-import 'package:flutter/material.dart';
+import 'package:fitnest/widgets/exercise_set_section.dart';
 
 class WorkoutDetails extends StatefulWidget {
   final Map wObj;
@@ -274,8 +275,8 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
 
                           return ExerciseSetSection(
                             sObj: sObj,
-                            onPressed: (obj) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Placeholder()));
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ExerciseDetails(obj: sObj,)));
                             },
                           );
                         },
